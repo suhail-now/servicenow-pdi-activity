@@ -181,12 +181,20 @@ async function keepInstanceAlive() {
       timeout: 30000,
     });
     await sleep(2000);
-
+    
+    // ── STEP 6: Quick visit to homepage to register activity
+    log("🏠 Step 5: Visiting Incident page to register extra activity...");
+    await page.goto(`${baseUrl}/nav_to.do?uri=incident_list.do`, {
+      waitUntil: "networkidle",
+      timeout: 30000,
+    });
+    await sleep(2000);
+    
     // ── Done! ─────────────────────────────────────────────
     log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     log("🎉 SUCCESS! Instance is alive and kicking!");
     log(`   Instance: ${baseUrl}`);
-    log(`   Pages visited: login, update sets, homepage`);
+    log(`   Pages visited: login, update sets, homepage, incident`);
     log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   } catch (error) {
     log(`❌ ERROR: ${error.message}`);
